@@ -81,7 +81,7 @@
                         height: '400px',
                         width: '100%'
                     };
-                    options = angular.extend(options, scope[attrs.ckeditor]);
+                    options = angular.extend(options, scope.$eval(attrs.ckeditor));
 
                     // Manage the plugins on ckEditor
                     if ((!angular.isUndefined(scope.ckPlugins)) && (scope.ckPlugins.length > 0)) {
