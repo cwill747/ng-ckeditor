@@ -47,6 +47,7 @@
                 var EMPTY_HTML = '<p></p>',
                     isTextarea = element[0].tagName.toLowerCase() === 'textarea',
                     data = [],
+                    dataDirty = false,
                     isReady = false;
 
                 if (!isTextarea) {
@@ -124,9 +125,14 @@
 
                         var item = data.pop() || EMPTY_HTML;
                         isReady = false;
+                    	dataDirty = false;
                         instance.setData(item, function () {
                             setModelData(setPristine);
-                            isReady = true;
+                            if(dataDirty) {
+                            	onUpdateModelData();
+                            } else {
+                            	isReady = true;
+                            }
                         });
                     };
 
@@ -151,6 +157,8 @@
                         data.push(ngModel.$viewValue);
                         if (isReady) {
                             onUpdateModelData();
+                        } else {
+                            dataDirty = true;
                         }
                     };
                 };
