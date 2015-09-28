@@ -108,6 +108,10 @@
                             if (setPristine !== true || data !== ngModel.$viewValue) {
                                 ngModel.$setViewValue(data);
                             }
+                            
+                            if (setPristine === true) {
+                                instance.resetUndo();
+                            }
 
                             if (setPristine === true && form) {
                                 form.$setPristine();
